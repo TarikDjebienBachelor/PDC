@@ -1,0 +1,48 @@
+// sort algorithm example
+#include <iostream>
+#include <algorithm>
+#include <vector>
+using namespace std;
+        XXXXXX
+bool myfunction (int i,int j) { return (i<j); }
+       XXXXXXX  X       X
+struct myclass {
+  bool operator() (int i,int j) { return (i<j);}
+} myobject;
+int main () {
+  int myints[] = {32,71,12,45,26,80,53,33};
+  vector<int> myvector (myints, myints+8);
+  // 32 71 12 45 26 80 53 33
+  vector<int>::iterator it;
+  // using default comparison (operator <):
+  sort (myvector.begin(), myvector.begin()+4);
+  //(12 32 45 71)26 80 53 33
+  // using function as comp
+  sort (myvector.begin()+4, myvector.end(), myfunction);
+  // 12 32 45 71(26 33 53 80)
+       XX       X       X
+  // using object as comp
+  sort (myvector.begin(), myvector.end(), myobject);
+  //(12 26 32 33 45 53 71 80)
+      XXX    XXXXXXX XXXXXXX
+  // print out content:
+  cout << "myvector contains:";
+  for (it=myvector.begin(); it!=myvector.end(); ++it)
+    cout << " " << *it;
+    cout << endl;
+  return 0;
+}
+Output:
+myvector contains: 12 26 32 33 45 53 71 80
+Complexity
+       XX       X       X
+Approximately N*logN comparisons on average (where N is last-first).
+In the worst case, up to N2, depending on specific
+sorting algorithm used by library implementation.
+       XXXXXXX  X       X
+See also
+stable_sort	Sort elements preserving order of equivalents (function template)
+partial_sort	Partially Sort elements in range (function template)
+search	Find subsequence in range (function template)
+reverse	Reverse range (function template)
+        XXXXXX

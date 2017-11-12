@@ -1,0 +1,76 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int 
+main
+(int argc, char *argv[])
+{
+    /* ENSEMBLE DES ETATS DE L'AUTOMATE */
+    typedef enum Etat Etat;
+    enum Etat
+    {
+       ETAT_DEBUT_LIGNE,
+       ETAT_DIRECTIVE,
+       ETAT_CARAC1,
+       ETAT_CHAINE,
+       ETAT_CHAR,
+       ETAT_CARAC2,
+       ETAT_CARAC3,
+       ETAT_DEBUT_COMM,
+       ETAT_COMMENTAIRE,
+       ETAT_CARAC4,
+       ETAT_DEBUT_FIN_COMM,
+       ETAT_FIN_COMM
+    };
+    /* ETAT INITIAL DE L'AUTOMATE */
+    Etat etat = ETAT_DEBUT_LIGNE ;
+    
+    /* Procedure d'indentation courante */
+    void
+    indentationCourante
+    (int nombreDeBlanc )
+    {
+      int i;
+      for ( i = 0 ; i < nombreDeBlanc ; i++ )
+      {
+        putchar(' ');
+      }/* endFor */
+    }/* Fin de indentationCourante */
+    
+    /* Lecture du fichier sur Stdin */
+    int c;
+    int nbBlanc = 0;
+    while ( (c=getchar()) != EOF ) {
+       switch (etat) {
+            case ETAT_DEBUT_LIGNE:
+                switch (c) {
+                    case ' ' : 
+                           /* ne rien faire */; 
+                           break;
+                    case '\t': 
+                           /* ne rien faire */; 
+                           break;
+                    case '#' :
+                           putchar(c); 
+                           etat = ETAT_DIRECTIVE;
+                           break;
+                    case '/' :
+                           putchar('\n');
+                           indentationCourante(nbBlanc);
+                           etat = ETAT_DEBUT_COMM;
+                           break;
+                    default:   
+                           etat = ETAT_CARAC1;
+                           break;
+                }
+            break;
+            
+ 
+       }/* switch */
+
+    
+    }/* endWhile */
+    
+return 0;
+}
+

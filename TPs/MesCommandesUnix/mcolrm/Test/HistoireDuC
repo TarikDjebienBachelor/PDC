@@ -1,0 +1,12 @@
+C a été développé par un collègue de Ken Thompson,
+Dennis Ritchie qui pensait d'abord faire uniquement
+un New B ou NB.
+Mais en plus des caractères,
+Ritchie ajouta les tableaux,
+les pointeurs, les nombres à virgule flottante,
+les structures...
+1972 fut l'année de développement la plus productive
+et sans doute l'année de baptême de C. En 1973, C fut suffisamment
+au point pour que 90% de UNIX puisse être récrit avec.
+En 1974, les laboratoires Bell ont accordé des licences UNIX
+aux universités et c'est ainsi que C a commencé à être distribué.
